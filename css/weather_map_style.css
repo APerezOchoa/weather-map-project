@@ -1,0 +1,11 @@
+#map {
+    /* the width and height may be set to any size */
+    width: auto;
+    height: 700px;
+}
+*{
+    margin: 0 5px 0 5px;
+}
+.container{
+    width: auto;
+}
