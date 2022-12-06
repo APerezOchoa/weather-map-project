@@ -28,7 +28,6 @@ let marker = new mapboxgl.Marker({
 // and execute the function that will update the weather
 function onDragEnd() {
     marker.setLngLat(marker.getLngLat()).addTo(map);
-    console.log(marker.getLngLat());
     let markerCoords = [marker.getLngLat().lng, marker.getLngLat().lat]
     getWeather(markerCoords)
 }
