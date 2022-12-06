@@ -1,5 +1,7 @@
 "use strict";
 
+///////////////////////////MAP CREATION SECTION/////////////////////////////////
+
 mapboxgl.accessToken = mapBoxKey;
 let map = new mapboxgl.Map({
     container: 'map',
@@ -13,7 +15,9 @@ geocode("El Paso, TX", mapBoxKey).then(function(result) {
     map.setZoom(10);
 });
 
-/////////////////////////////////DRAG MARKER SECTION///////////////////////////////////////
+
+/////////////////////////////DRAG MARKER SECTION//////////////////////////////////
+
 // Got draggable marker from https://docs.mapbox.com/mapbox-gl-js/example/drag-a-marker/
 // This is the default location of marker
 let marker = new mapboxgl.Marker({
@@ -31,7 +35,8 @@ function onDragEnd() {
 marker.on('dragend', onDragEnd);
 
 
-/////////////////////////////////MAP CREATION SECTION///////////////////////////////////////
+////////////////////////////WEATHER SECTION///////////////////////////////////////
+
 $.get("http://api.openweathermap.org/data/2.5/weather", {
     APPID: weatherMapKey,
     q:     "El Paso, TX, US",
@@ -39,7 +44,8 @@ $.get("http://api.openweathermap.org/data/2.5/weather", {
 })
 
 
-////////////////FORECAST/HTML AUTO-POPULATE/RE-EXECUTE FUNCTION//////////////////////////////////
+////////////////FORECAST/HTML AUTO-POPULATE/RE-EXECUTE FUNCTION//////////////////
+
 let weatherCards = $("#weather-cards");
 function getWeather(coords) {
     $.get("http://api.openweathermap.org/data/2.5/forecast", {
@@ -50,7 +56,7 @@ function getWeather(coords) {
     }).done(function (data) {
         let reports = data.list;
         let html = "";
-        //modeled for loop after Paul Wagner's
+        //modeled for loop after Paul Wagner's code
         for(let i = 0; i < reports.length; i += 8){
             let cardHeader = reports[i].dt_txt.split(" ");
             let tempMax = reports[i].main.temp_max;
@@ -77,6 +83,8 @@ function getWeather(coords) {
     });
 }
 
-/////////////////////////////////START POINT CREATION///////////////////////////////////////
+
+/////////////////////////MAP & WEATHER START POINT CREATION////////////////////////
+
 let coords = [-106.4411, 31.7867];
 getWeather(coords);

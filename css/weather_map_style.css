@@ -3,9 +3,11 @@
     width: auto;
     height: 700px;
 }
-*{
+
+* {
     margin: 0 5px 0 5px;
 }
-.container{
+
+.container {
     width: auto;
 }
